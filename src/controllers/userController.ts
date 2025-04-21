@@ -121,3 +121,13 @@ export const deleteFriend = async ( req: Request, res: Response) => {
         return res.status(500).json({message: err.message});
     }
 };
+
+// Other exports
+interface GetUsersRequest extends Request {}
+// Removed unused GetUsersResponse interface
+
+export const getUsers = async (_req: GetUsersRequest) => {
+    // Implementation for fetching all users
+};
+
+// Removed duplicate declaration of getUserById to avoid redeclaration error
