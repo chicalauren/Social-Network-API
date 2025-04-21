@@ -2,7 +2,7 @@ import mongoose from 'mongoose';
 const db = async () => {
     try {
         // TO DO: insert below
-        // await mongoose.connect(process.env.MONGODB_URI || 'insert_your_mongodb_uri_here', {);
+        await mongoose.connect(process.env.MONGODB_URI || 'mongodb://127.0.0.1:27017/socialmediaDB');
         return mongoose.connection;
     }
     catch (error) {

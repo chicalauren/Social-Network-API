@@ -1,17 +1,15 @@
-"use strict";
-const router = require('express').Router();
-const { getThoughts, getThoughtById, createThought, updateThought, deleteThought, addReaction, removeReaction } = require('../controllers/thoughtController');
-// Rutas para los pensamientos
+import { Router } from 'express';
+import { getAllThoughts, getThoughtById, createThought, updateThought, deleteThought, addReaction, removeReaction, } from '../../controllers/thoughtController';
+const router = Router();
 router.route('/')
-    .get(getThoughts)
+    .get(getAllThoughts)
     .post(createThought);
 router.route('/:thoughtId')
     .get(getThoughtById)
     .put(updateThought)
     .delete(deleteThought);
-// Rutas para las reacciones
-router.route('/:thoughtId/reactions')
+router.route('/:thoughtId/reaction')
     .post(addReaction);
-router.route('/:thoughtId/reactions/:reactionId')
+router.route('/:thoughtId/reaction/:reactionId')
     .delete(removeReaction);
-module.exports = router;
+export { router as thoughtRoute };
