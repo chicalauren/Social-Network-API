@@ -11,7 +11,9 @@
     "strict": true,
     "skipLibCheck": true,
     "moduleSuffixes": [".js", ".mts", ".mjs", ".ts"],
+    "typeRoots": ["./node_modules/@types"],
     "verbatimModuleSyntax": true
+
   },
   "include": ["src"]
 }
