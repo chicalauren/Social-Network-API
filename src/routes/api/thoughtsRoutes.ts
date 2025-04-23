@@ -1,5 +1,6 @@
 import { Router } from 'express';
 
+const router = Router();
 import {
   getAllThoughts,
   getThoughtById,
@@ -8,9 +9,7 @@ import {
   deleteThought,
   addReaction,
   removeReaction,
-} from '../../controllers/thoughtController';
-
-const router = Router();
+} from '../../controllers/thoughtsControllers.js';
 
 router.route('/')
   .get(getAllThoughts)
@@ -27,4 +26,4 @@ router.route('/:thoughtId/reaction')
 router.route('/:thoughtId/reaction/:reactionId')
   .delete(removeReaction);
 
-export { router as thoughtRoute };
+export { router as thoughtsRouter };
