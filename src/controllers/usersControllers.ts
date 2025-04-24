@@ -1,7 +1,7 @@
 import { Request, Response } from 'express';
 import { User, Thought } from "../models/index.js";
 
-export const getAllUsers = async (_req: Request, res: Response): => {
+export const getAllUsers = async (_req: Request, res: Response): Promise<void> => {
     try {
         const users = await User.find();
         const userObj = {
@@ -15,22 +15,22 @@ export const getAllUsers = async (_req: Request, res: Response): => {
     }
 };
 
-export const getUserById = async (req: Request, res: Response): => {
+export const getUserById = async (req: Request, res: Response): Promise<void> => {
     try {
         const userId = req.params.id;
         const user = await User.findById(userId).populate('thoughts').populate('friends');
 
         if (!user) {
-            return res.status(404).json({ message: 'User not found' });
+             res.status(404).json({ message: 'User not found' });
         }
 
-        return res.json({ user });
+         res.json({ user });
     } catch (error: any) {
-        return res.status(500).json({ message: error.message });
+         res.status(500).json({ message: error.message });
     }
 };
 
-export const createUser = async (req: Request, res: Response): => {
+export const createUser = async (req: Request, res: Response): Promise<void> => {
     try {
         const user = await User.create(req.body);
         res.json({ user });
@@ -39,24 +39,24 @@ export const createUser = async (req: Request, res: Response): => {
     }
 };
 
-export const updateUser = async (req: Request, res: Response): => {
+export const updateUser = async (req: Request, res: Response): Promise<void> => {
     try {
         const userId = req.params.id;
         const updateData = req.body;
         const user = await User.findOneAndUpdate({_id:userId}, updateData, {new: true});
 
         if (!user) {
-            return res.status(404).json({ message: "User not found" });
+             res.status(404).json({ message: "User not found" });
             
         }
 
-        return res.json({ user });
+         res.json({ user });
     } catch (err) {
         res.status(500).json(err);
     }
 };
 
-export const deleteUser = async (req: Request, res: Response): => {
+export const deleteUser = async (req: Request, res: Response): Promise<void> => {
     try {
         const userId = req.params.id;
 
@@ -65,24 +65,24 @@ export const deleteUser = async (req: Request, res: Response): => {
         const user = await User.findOneAndDelete({ _id: userId });
 
         if (!user) {
-            return res.status(404).json({ message: 'User not found' });
+             res.status(404).json({ message: 'User not found' });
             
         }
 
-        return res.json({ message: 'User and thoughts successfully deleted' });
+         res.json({ message: 'User and thoughts successfully deleted' });
     } catch (err) {
         console.log(err);
-        return res.status(500).json(err);
+         res.status(500).json(err);
     }
 };
 
-export const addFriend = async (req: Request, res: Response): => {
+export const addFriend = async (req: Request, res: Response): Promise<void> => {
     try {
         const userId = req.params.id;
         const friendId = req.params.friendId;
 
         if (!friendId || userId === friendId) {
-            return res.status(400).json({ message: 'Invalid friend ID' });
+             res.status(400).json({ message: 'Invalid friend ID' });
             
         }
 
@@ -93,23 +93,23 @@ export const addFriend = async (req: Request, res: Response): => {
         );
 
         if (!user) {
-            return res.status(404).json({ message: 'User not found' });
+             res.status(404).json({ message: 'User not found' });
         
         }
-        return res.json({ user });
+         res.json({ user });
 
     } catch (err) {
-        return res.status(500).json(err);
+         res.status(500).json(err);
     }
 };
 
-export const deleteFriend = async (req: Request, res: Response): => {
+export const deleteFriend = async (req: Request, res: Response): Promise<void> => {
     try {
         const userId = req.params.id;
         const friendId = req.params.friendId;
 
         if (!friendId || userId === friendId) {
-            return res.status(400).json({ message: 'Invalid friend ID' });
+             res.status(400).json({ message: 'Invalid friend ID' });
             
         }
 
@@ -120,11 +120,11 @@ export const deleteFriend = async (req: Request, res: Response): => {
         );
 
         if (!user) {
-            return res.status(404).json({ message: 'User not found' });
+             res.status(404).json({ message: 'User not found' });
         }
 
-        return res.json({ user });
+         res.json({ user });
     } catch (err: any) {
-        return res.status(500).json({ message: err.message });
+         res.status(500).json({ message: err.message });
     }
 };
