@@ -26,4 +26,7 @@ router.route('/:thoughtId/reaction')
 router.route('/:thoughtId/reaction/:reactionId')
   .delete(removeReaction);
 
+router.post('/users/:userId/thought/:thoughtId/reaction');
+
+
 export { router as thoughtsRouter };
