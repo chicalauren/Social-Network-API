@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # Social Network API
 
 This project is a backend API for a social network application, built with Node.js, Express, and MongoDB. The API allows users to interact with thoughts, react to them, and manage users.
