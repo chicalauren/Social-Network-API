@@ -10,7 +10,7 @@ This project is a backend API for a social network application, built with Node.
 
 ## Walkthrough Video
 
-[Click here](https://app.screencastify.com/v3/watch/67IBWnVITnFb75bq5UUo)
+[Click here](https://drive.google.com/file/d/1aj4rxVbSBiLS537YpVhnBkwOpOqS8dmR/view?usp=sharing)
 
 ## Technologies Used
 
